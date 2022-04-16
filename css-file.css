@@ -1,0 +1,31 @@
+body {
+	background-color: #cef7cb;
+}
+
+p {
+	padding: 0 0 0 20px;
+	font-size: 20px;
+}
+
+form {
+	padding-left: 20px;
+}
+
+#firstname,#lastname,#email,#whеnithарреnd,#howlong,#оwmаnу,#аliеndеsсriрtiоn,#whаtthеуdid,#fаngsроttеd,#other {
+	margin: 5px;
+}
+
+#submit {
+	margin-top: 15px;
+}
+
+#sis {
+	padding: 20px;
+	background-color: #cef7cb;
+	font-size: 20px;
+	font-family: sans-serif;
+	color: #014055;
+}
+
+
+

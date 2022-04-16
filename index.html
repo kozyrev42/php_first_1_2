@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title> Сайт на PHP </title>
+	<style> @import "css-file.css"; </style>
+</head>
+<body>
+
+<div id='sis'> Сообщения о похищениях</div>
+<p>Расскажите Вашу историю:</p>
+
+<form method = "post" action="report.php">	<!-- для значение action="" - пишим путь-назначение для отправляемой формы, при событии `submit` -->
+											<!-- "report.php" - сценарий который будет запущен на сервере для обработки формы, при событии `submit` -->				
+											<!-- тэг <form> использует метод "post" для передачи данных формы сценарию -->	
+
+	<label for="youname">Ваше имя</label>				<!-- просто тэг с текстом -->
+	<input type="text" name="youname" id="youname" />	<!-- в Массив $_POST сохраниться значение input`a, в ячейку с ключем "youname" -->
+	<br/>												<!-- name="youname" - будет являтся ключом для доступа к данных из Массиве $_POST -->
+
+	<label for="whеnithарреnd">Когда это произошло?</label>
+	<input type="text" name="whеnithарреnd" id="whеnithарреnd" />
+	<br/>
+
+	<label for="email">Ваш @mail</label>
+	<input type="text" name="email" id="email" />
+	<br/>
+
+	<input id="submit" name="submit" type="submit"  value="Сообщение о похищении"/>
+</form>
+
+
+<script type="text/babel">
+</script>
+</body>
+</html>
+
+
