@@ -16,9 +16,9 @@
     $db_name = 'my_php';    // имя БД
     
     /*  в этот файл.php был направлен массив методом POST  */
-    $you_name = $_POST['youname'];                          /*  достаём из массива $_POST данные, и определяем Их Переменной */                            
-    $when_it_happened = $_POST['whеnithарреnd'];            /*  значение сохраняется в переменную */
-    $email = $_POST['email'];     // изолируем данные из формы, для дальнейшей работы с ними
+    $you_name = $_POST['youname'];                      /*  обращаемся к данным из массива $_POST, и назначаем Данные Переменной */                            
+    $when_it_happened = $_POST['whеnithарреnd'];        /*  значение сохраняется в переменную */
+    $email = $_POST['email'];                           /*  изолируем данные из формы, для дальнейшей работы с ними */
     
     echo 'Вы были похищены '. $when_it_happened .'<br/>';   /*  вызов 'строки' и переменной с данными */
     echo 'Ваше имя '. $you_name .'<br/><br/>';                       
@@ -34,39 +34,41 @@
 
     // $subject = 'Тема сообщения';     /*  переменная содержит тему сообщения            */
     // $to = 'libe.nvk@gmail.com';      /*  переменная определяет адрес назначение письма */
-
     // mail ($to, $subject, $msg, 'From:' . $email);   /* функция отправляет email */
 
-
+    
+    /* открываем соединение с БД */
     $dbConnect = mysqli_connect($host, $user, $password, $db_name)
         or die ('Ошибка соединения с Сервером')
     ;
     
-
+    /* обработка Первого запроса - Запрос добавления в БД данных */
     $query = "INSERT INTO `сообщения` (     /* запрос в двойных кавычках обязательно */
         `youname`,`whеnithарреnd`,`email`)
         VALUES ('$you_name','$when_it_happened','$email')"
     ;
-
+    
+    /* осуществление запроса к серверу */
     $result = mysqli_query($dbConnect, $query)         //  mysqli_query - принимает 2 аругумента:
         or die ('Ошибка при выполнении запроса к БД')  //  первый:-> ссылка на соединение
     ;                                                  //  второй:-> запрос sql
 
 
-
+    /* обработка Второго запроса - Запрос чтения из БД */
     $query2 = 'SELECT * FROM `сообщения`';
     $result2 = mysqli_query($dbConnect, $query2);
 
-            if(!$result2){ 
-              echo 'Ошибка запроса: ' . mysqli_error($dbConnect) . '<br>';
-              echo 'Код ошибки: ' . mysqli_errno($dbConnect);
-             } else { 
-                echo 'запрос успешен' . '<br>';    // выполнился
-                while($row = $result2->fetch_assoc()){
-                    echo $row['youname'];   // далее обрабатываем полученные данные
-                }
-            }
+    if(!$result2){ 
+        echo 'Ошибка запроса: ' . mysqli_error($dbConnect) . '<br>';
+        echo 'Код ошибки: ' . mysqli_errno($dbConnect);
+    } else { 
+        echo 'запрос успешен' . '<br>';    // выполнился
+        while($row = $result2->fetch_assoc()){
+        echo $row['youname'];   // далее обрабатываем полученные данные
+      }
+    }
 
+    /* закрываем соединение с базой */
     mysqli_close($dbConnect);
 
 ?>
